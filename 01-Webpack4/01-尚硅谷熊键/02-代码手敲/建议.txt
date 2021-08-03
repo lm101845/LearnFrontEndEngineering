@@ -1,0 +1,9 @@
+把包下载到最外面，利用Node的查找机制，本地找不到会到上级去找。
+并且包都要下在一块，统一在外面(02-代码手敲)去下，里面则负责运行指令。
+
+
+在【02-代码手敲】文件夹下输入：
+①npm init，项目名叫webpack_code，以后一路回车
+②npm i webpack webpack-cli -D
+③npm i css-loader style-loader -D
+
