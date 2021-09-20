@@ -1,4 +1,10 @@
 /*
+ * @Author: liming
+ * @Date: 2021-07-28 19:16:38
+ * @LastEditTime: 2021-09-20 19:16:44
+ * @FilePath: \01-尚硅谷熊键\01-课程资料\01-代码\4.webpack优化环境配置\21.缓存\server.js
+ */
+/*
   服务器代码
   启动服务器指令：
     npm i nodemon -g
