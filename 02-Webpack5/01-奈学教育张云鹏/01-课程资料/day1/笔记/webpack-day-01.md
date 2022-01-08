@@ -609,7 +609,8 @@ npm i file-loader -D
 
 
 ```js
-{ //在webpack.base.js中增加file-loader用来解析文件
+{ 
+    //在webpack.base.js中增加file-loader用来解析文件
   test:/\.(png|jpg|jpeg|gif)$/,
     use:[
       {loader:'file-loader'}
@@ -640,7 +641,8 @@ file-loader主要解决的问题就是将src中的文件类型的数据动态的
 * webpack到底做了什么事情？
   * 它帮我们把左侧有依赖关系的，浏览器有一部分识别，一部分不识别的一些文件，按照一定的关系，把它最终输出为`js`、`css`、`jpg`、`png`这种浏览器能直接运行的文件。
 * webpack只能处理`js`文件，默认处理不了`html`文件，所以需要装一个插件`html-webpack-plugin`
-* 
+* `tree-shaking`是webpack原生就默认支持的，它的意思是把你没用到的东西给"摇"掉。
+  * 比如你全局引入了`Element UI`框架，但是你只用了20%的功能，其他的都没用，webpack会自动将你没用过的代码去掉，不会在项目里进行打包。
 
 
 
