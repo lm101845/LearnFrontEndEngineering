@@ -1,0 +1,13 @@
+$color: blue;
+.container {
+    display: flex;
+    .box {
+        margin: 15px;
+        flex-grow: 0;
+        flex-shrink: 0;
+        width: 150px;
+        height: 150px;
+        background-color: pink;
+        color: blue;
+    }
+}

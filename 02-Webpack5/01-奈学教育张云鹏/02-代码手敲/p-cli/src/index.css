@@ -1,0 +1,6 @@
+.btn {
+    color: red;
+    display: flex;
+    width: 200px;
+    padding: 5px 10px;
+}
