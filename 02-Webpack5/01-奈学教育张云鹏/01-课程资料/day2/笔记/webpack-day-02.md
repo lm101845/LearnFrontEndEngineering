@@ -143,7 +143,9 @@ module.exports = {
       // ... 其它规则
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+          use:[
+              loader: 'vue-loader'
+          ]
       }
     ]
   },
@@ -368,7 +370,7 @@ npm run build
 
 ## 5.个性化功能
 
-### 5.1gzip压缩代码
+### 5.1gzip压缩代码(压缩传输技术，服务器解压时间比下载时间花费更少)
 
 引入compression-webpack-plugin组件来实现对vue项目的代码进一步压缩
 
@@ -537,4 +539,35 @@ plugins:[
 他的文档地址如下：https://www.npmjs.com/package/webpack-bundle-analyzer
 
 使用后可以通过他来可视化追踪构建项目的依赖图谱和各个组件间的依赖关系
+
+### 5.4 公共依赖提取
+
+~~~
+    optimization: {
+        splitChunks: {
+            //用来拆分代码的
+            cacheGroups: {
+                //分组，这里一共分了2组，一组是commons，一组是vendor
+                commons: {
+                    name: 'commons',
+                    chunks: 'initial',
+                    minChunks: 2
+                        //如果有至少2个地方引入了同一个依赖，就把这个依赖提取出来
+                },
+                vendor: {
+                    chunks: 'all',
+                    //检测所有的依赖
+                    test: /[\\/]node_modules[\\/]/,
+                    //只检测node_modules下的第三方包
+                    name: 'vendor',
+                    minChunks: 1,
+                    maxInitiaPequests: 5,
+                    minSize: 0,
+                    priority: 100
+                        //优先级为100，表示把这个拆分出来的代码放在最后
+                }
+            }
+        }
+    }
+~~~
 
