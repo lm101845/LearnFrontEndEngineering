@@ -9,6 +9,8 @@ categories: Webpack
 
 (注2：此篇博文就是将Webpack官方文档中文版抄了一遍，里面添加了少许别的东西。)
 
+(注3：现在是2022年4月7日，开始继续学习Webpack。)
+
 [Webpack之父访谈——当初为什么要写webpack](https://www.imooc.com/article/261990)
 
 [Webpack 诞生记](https://juejin.im/post/6844903877511217159)
