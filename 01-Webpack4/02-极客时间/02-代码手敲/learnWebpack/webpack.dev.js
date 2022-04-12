@@ -1,6 +1,8 @@
 'use strict';
 
 const path = require('path');
+const webpack = require('webpack');
+//引入webpack自带的hotmodulereplacementplugin插件,因为是自带的，这里我们先引入webpack
 
 module.exports = {
     // entry: './src/index.js',
@@ -15,7 +17,8 @@ module.exports = {
         filename: '[name].js',
         path: path.join(__dirname, 'dist'),
     },
-    mode: 'production',
+    // mode: 'production',
+    mode: 'development',
     module: {
         rules: [{
                 test: /\.js$/,
@@ -64,5 +67,12 @@ module.exports = {
                 use: 'file-loader'
             }
         ]
+    },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin()
+    ],
+    devServer: {
+        contentBase: './dist',   // 服务基础目录
+        hot: true,  //开启热更新
     }
 };
