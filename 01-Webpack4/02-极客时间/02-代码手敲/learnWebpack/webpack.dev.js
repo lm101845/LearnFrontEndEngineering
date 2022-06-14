@@ -3,6 +3,7 @@
 const path = require('path');
 const webpack = require('webpack');
 //引入webpack自带的hotmodulereplacementplugin插件,因为是自带的，这里我们先引入webpack
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
     // entry: './src/index.js',
@@ -69,7 +70,8 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new CleanWebpackPlugin(),
     ],
     devServer: {
         contentBase: './dist',   // 服务基础目录

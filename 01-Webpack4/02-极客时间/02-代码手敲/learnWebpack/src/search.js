@@ -9,7 +9,7 @@ class Search extends React.Component {
     render() {
         return (
             <div className="search-text">
-                搜索文字
+                搜索文字111
                 <img src={cat} style={{ width: "100px", height: "100px" }} />
             </div>
 

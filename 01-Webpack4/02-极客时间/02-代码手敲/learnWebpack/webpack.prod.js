@@ -6,7 +6,7 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 
 module.exports = {
@@ -24,7 +24,8 @@ module.exports = {
     },
     mode: 'production',
     module: {
-        rules: [{
+        rules: [
+            {
                 test: /\.js$/,
                 use: 'babel-loader'
             },
@@ -43,7 +44,24 @@ module.exports = {
                 use: [
                     MiniCssExtractPlugin.loader,
                     'css-loader',
-                    'less-loader'
+                    'less-loader',
+                    {
+                        loader:'postcss-loader',
+                        options: {
+                            plugins:()=>[
+                                require("autoprefixer")({
+                                    browsers:['last 2 versions','>1%','ios 7']
+                                })
+                            ]
+                        }
+                    },
+                    {
+                        loader:"px2rem-loader",
+                        options: {
+                            remUnit: 75,    //1rem等于750px
+                            remPrecesion: 8 //小数点位数
+                        }
+                    }
                 ]
             },
             {
@@ -106,6 +124,7 @@ module.exports = {
                 minifyJS: true,
                 removeComments: false
             }
-        })  
+        }),
+        new CleanWebpackPlugin(),
     ]
 };
