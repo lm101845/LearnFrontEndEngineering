@@ -1,0 +1,9 @@
+https://webpack.docschina.org/guides/getting-started/
+
+学习webpack过程中搜集的资料
+
+指南、起步、管理资源看完——22-09-13
+管理输出还没看：https://webpack.docschina.org/guides/output-management/
+
+webpack打包中path.resolve和__dirname的含义：https://blog.csdn.net/xiaolinlife/article/details/106533080
+
