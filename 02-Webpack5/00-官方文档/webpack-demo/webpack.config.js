@@ -6,10 +6,28 @@
 const path = require('path');
 //path 模块提供了一些实用工具，用于处理文件和目录的路径
 
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
-    entry: './src/index.js',
+    mode: 'development',
+    // entry: './src/index.js',
+    entry: {
+        index:'./src/index.js',
+        print: './src/print.js',
+    },
+    devtool: 'inline-source-map',
+    devServer: {
+        static: './dist',
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            // title:'管理输出',
+            title:'开发环境'
+        })
+    ],
     output:{
-        filename:'bundle.js',
+        // filename:'bundle.js',
+        filename: '[name].bundle.js',
         path:path.resolve(__dirname, 'dist'),
         /**
          * path.resolve() 方法会将路径或路径片段的序列解析为绝对路径。
@@ -20,6 +38,8 @@ module.exports = {
          * console.log(path.resolve(__dirname, 'dist'))
          * //E:\01-code\15-LearnWebpack5\LearnWebpack5\02-Webpack5\00-官方文档\webpack-demo\src\dist
          */
+        clean: true,
+        publicPath: '/',
     },
     module: {
         rules: [
@@ -52,5 +72,9 @@ module.exports = {
                 use: ['xml-loader'],
             },
         ]
-    }
+    },
+    optimization: {
+        //以上配置告知 webpack-dev-server，将 dist 目录下的文件 serve 到 localhost:8080 下。
+        runtimeChunk: 'single',
+    },
 }
