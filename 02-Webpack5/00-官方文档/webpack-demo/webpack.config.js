@@ -12,8 +12,18 @@ module.exports = {
     mode: 'development',
     // entry: './src/index.js',
     entry: {
-        index:'./src/index.js',
-        print: './src/print.js',
+        index: './src/index.js',
+        // print: './src/print.js',
+        // another:'./src/another-module.js',
+        // index: {
+        //     import: './src/index.js',
+        //     dependOn: 'shared',
+        // },
+        // another: {
+        //     import: './src/another-module.js',
+        //     dependOn: 'shared',
+        // },
+        shared: 'lodash',
     },
     devtool: 'inline-source-map',
     devServer: {
@@ -22,12 +32,14 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             // title:'管理输出',
-            title:'开发环境'
+            // title:'开发环境'
+            title:'Caching'
         })
     ],
     output:{
         // filename:'bundle.js',
-        filename: '[name].bundle.js',
+        // filename: '[name].bundle.js',
+        filename: '[name].[contenthash].js',
         path:path.resolve(__dirname, 'dist'),
         /**
          * path.resolve() 方法会将路径或路径片段的序列解析为绝对路径。
@@ -44,8 +56,8 @@ module.exports = {
     module: {
         rules: [
             {
-                test:/\.css$/i,
-                use:['style-loader', 'css-loader']
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader']
                 /**
                  * 模块 loader 可以链式调用。链中的每个 loader 都将对资源进行转换。链会逆序执行。第一个 loader 将其结果（被转换后的资源）
                  * 传递给下一个 loader，依此类推。最后，webpack 期望链中的最后的 loader 返回 JavaScript。
@@ -74,7 +86,20 @@ module.exports = {
         ]
     },
     optimization: {
+        moduleIds: 'deterministic',
         //以上配置告知 webpack-dev-server，将 dist 目录下的文件 serve 到 localhost:8080 下。
         runtimeChunk: 'single',
+        // splitChunks: {
+        //     chunks: 'all',
+        // },
+        splitChunks: {
+            cacheGroups: {
+                vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all',
+                },
+            },
+        },
     },
 }
