@@ -1,0 +1,8 @@
+章节内容：环境变量
+https://webpack.docschina.org/guides/environment-variables/
+
+初始化项目
+npm init -y
+npm install --save-dev webpack webpack-cli
+
+npx webpack --env goal=local --env production --progress

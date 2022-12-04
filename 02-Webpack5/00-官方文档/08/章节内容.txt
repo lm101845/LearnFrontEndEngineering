@@ -1,0 +1,2 @@
+章节内容：创建library
+https://webpack.docschina.org/guides/author-libraries/
