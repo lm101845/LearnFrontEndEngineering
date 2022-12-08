@@ -1,5 +1,7 @@
 # Shell概述
 
+> https://blog.csdn.net/Jackson00709/article/details/106086756
+
 shell是一个[命令行](https://so.csdn.net/so/search?q=%E5%91%BD%E4%BB%A4%E8%A1%8C&spm=1001.2101.3001.7020)解释器，它接收应用程序/用户命令，然后调用操作系统内核
 
 # 脚本入门
@@ -62,7 +64,7 @@ linux
 
 ### 基本语法
 
-1. 定义变量：变量=值 *等号两边不能留有空格*
+1. 定义变量：变量=值 **等号两边不能留有空格,一个空格都不能有！！！**
 2. 撤销变量：unset 变量
 3. 输出变量：echo $变量
 4. 声明静态变量： readonly 变量，注意：不能unset
@@ -72,7 +74,7 @@ linux
 [linux@localhost datas]$ echo $A
 1
 [linux@localhost datas]$ unset A
-1234
+
 ```
 
 ### 变量定义规则
@@ -86,11 +88,34 @@ linux
 [linux@localhost datas]$ D="A B C"
 [linux@localhost datas]$ echo $D
 A B C
-123
+
+[root@lm1018 atguigu]# E=1+1
+[root@lm1018 atguigu]# echo $E
+1+1
+
+[root@lm1018 atguigu]# D=bangzhang love mm
+-bash: love: command not found
+[root@lm1018 atguigu]# D="bangzhang love mm"
+[root@lm1018 atguigu]# echo $D
+bangzhang love mm
 ```
 
-1. 可把变量提升为全局变量，可供其他shell程序使用
+5. 可把变量提升为全局变量，可供其他shell程序使用
    export 变量
+
+~~~bash
+[root@lm1018 datas]# vim helloworld.sh 
+[root@lm1018 datas]# echo $D
+bangzhang love mm
+[root@lm1018 datas]# bash helloworld.sh
+helloworld
+
+[root@lm1018 datas]# export D
+[root@lm1018 datas]# bash helloworld.sh
+helloworld
+bangzhang love mm
+[root@lm1018 datas]# 
+~~~
 
 ## 特殊变量
 
@@ -101,7 +126,11 @@ $n （描述：n为数字，$0代表脚本名称，10以内参数用$1-9 表 示
 ```shell
 #!/bin/bash
 echo "$0 $1 $2 $3"
-12
+
+[root@lm1018 datas]# bash parameter.sh
+parameter.sh  
+[root@lm1018 datas]# bash parameter.sh 参数1 参数2
+parameter.sh 参数1 参数2
 ```
 
 ### $#
@@ -112,7 +141,7 @@ $# (功能描述：获取所有输入参数个数，常用于循环)
 #!/bin/bash
 echo "$0 $1 $2 $3"
 echo $#
-123
+
 ```
 
 ### $* 和$@
@@ -121,6 +150,12 @@ echo $#
 - $@ （描述：也代表命令行中所有的参数，不过把每个参数区分对待）
 
 ```powershell
+#!/bin/bash
+echo "$0 $1 $2"
+echo $*
+echo $@
+
+
 [linux@localhost datas]$ bash parameter.sh test1 test2
 parameter.sh test1 test2 
 2
@@ -136,16 +171,18 @@ $? （描述：最后一次执行命令的状态，0：正确执行）
 # 运算符
 
 1. $((运算式)) 或 $[运算式]
-2. expr +,-,\*,/,% 加减乘除取余
-   *expr运算符间要有空格*
+2. expr **+**  ，**-** ，\\*，**/**，**%** 分别表示：加减乘除取余
+   注意：**expr运算符间要有空格**
 
 ```powershell
 # 计算2+3
 [linux@localhost datas]$ expr 2 + 3
 5
+[linux@localhost datas]$ expr 2+3
+2+3
 
 # 计算（2+3）*4
-## 方式1
+## 方式1 这个`表示先执行2+3的结果
 [linux@localhost datas]$ expr `expr 2 + 3` \* 4
 20
 

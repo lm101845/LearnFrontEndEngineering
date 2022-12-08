@@ -1,0 +1,3 @@
+.bat格式的脚本只适用于Windows系统，Linux系统和Mac系统无效。
+
+explorer.bat是自己每天日常工作需要打开的浏览器网址的脚本
