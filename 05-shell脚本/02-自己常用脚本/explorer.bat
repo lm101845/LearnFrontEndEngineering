@@ -8,4 +8,6 @@ start https://chat.openai.com/chat
 
 start http://localhost:9102/#/
 
+start https://docs.qq.com/sheet/DU2tHdEpMaWZHeGZ5?tab=BB08J2
+
 pause
